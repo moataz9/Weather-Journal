@@ -1,5 +1,5 @@
 // Setup empty JS Array to act as endpoint for all routes
-projectData = []
+let projectData = {}
 // Require Cors
 const cors = require('cors')
 // Require Express to run server and routes
@@ -26,7 +26,7 @@ app.use(express.static('website'))
 // home get route
 app.get('/all', (req, res) => {
   res.send(projectData)
-  console.log(projectData);
+  console.log(projectData)
 })
 
 //  post add route
@@ -36,9 +36,9 @@ app.post('/add', (req, res) => {
     temp: req.body.temp,
     content: req.body.content,
     townName: req.body.townName,
-    weatherDesc: req.body.weatherDesc
+    weatherDesc: req.body.weatherDesc,
   }
-  projectData.push(newProjectData)
+  projectData = newProjectData
 })
 
 // spin out the server
