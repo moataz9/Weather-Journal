@@ -38,7 +38,7 @@ const performWeatherActions = () => {
         errorEL.innerHTML = data.message
         setTimeout(() => {
           errorEL.style.top = `-${errorEL.clientHeight}px`
-        }, 3000);
+        }, 3000)
         return
       }
       // add Data to post request
@@ -92,19 +92,11 @@ const updateClientUI = async () => {
 
   try {
     const reqData = await requestedData.json()
-
-    if (reqData.length) {
-      // show content of last entered data by User
-      let reqDataLastEl = reqData[reqData.length - 1]
-      // change temperature form °k to °C
-      const tempFromKtoC_formatted = (reqDataLastEl.temp - 273.15).toFixed(2)
-
-      dateEl.innerHTML = `<strong>Date: </strong>${reqDataLastEl.date}`
-      temperatureEl.innerHTML = `<strong>Temperature: </strong>${tempFromKtoC_formatted} °C`
-      feelingContentEl.innerHTML = `<strong>I Feel: </strong>${reqDataLastEl.content}`
-      townEl.innerHTML = `<strong>Town name: </strong>${reqDataLastEl.townName}`
-      weatherDescEl.innerHTML = `<strong>Weather Description: </strong>${reqDataLastEl.weatherDesc}`
-    }
+    dateEl.innerHTML = `<strong>Date: </strong>${reqData.date}`
+    temperatureEl.innerHTML = `<strong>Temperature: </strong>${reqData.temp} °C`
+    feelingContentEl.innerHTML = `<strong>I Feel: </strong>${reqData.content}`
+    townEl.innerHTML = `<strong>Town name: </strong>${reqData.townName}`
+    weatherDescEl.innerHTML = `<strong>Weather Description: </strong>${reqData.weatherDesc}`
   } catch (err) {
     console.log('error', err)
   }
